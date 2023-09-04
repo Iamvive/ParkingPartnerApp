@@ -1,0 +1,86 @@
+# Gradle files
+.gradle/
+build/
+local.properties
+
+# Android Studio directories
+.idea/
+*.iml
+
+# Android generated files
+app/build/
+app/release/
+app/src/main/.cxx/
+app/src/main/cinterop/
+app/src/main/kotlin/cinterop/
+
+# Xcode generated files
+iosApp/.build/
+iosApp/.swiftpm/
+iosApp/iosApp.xcodeproj/
+iosApp/iosApp.xcworkspace/
+iosApp/Pods/
+
+# KMM generated files
+shared/build/
+shared/release/
+shared/src/main/.cxx/
+shared/src/main/cinterop/
+shared/src/main/kotlin/cinterop/
+
+# macOS directory
+.DS_Store
+
+# Kotlin/Java build and runtime
+build/
+out/
+.idea/
+
+# Gradle
+.gradle/
+build/
+
+# Ignore any local Gradle files
+gradle-local.properties
+
+# Android Studio
+*.iml
+.idea/
+
+# Android Emulator
+*.avd/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Proguard
+proguard/
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+
+# Windows thumbnail db
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/
+
+# macOS Finder metadata
+.DS_Store
+
+# Node.js
+node_modules/
+
+# User-specific files
+.gradle/
+.local/
+.idea/
+.vscode/
+.gradle
