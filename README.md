@@ -1,8 +1,9 @@
 
 ```markdown
-# Project Name
+# ParkingPartnerApp
+Doc Reference: https://www.notion.so/Engineering-2f405032040245418da48edea3513816
 
-Project Name is a Kotlin Multiplatform Android project that enables [brief description of what your project does].
+ParkingPartnerApp is a Kotlin Multiplatform Android project that enables [brief description of what your project does].
 
 ## Table of Contents
 
