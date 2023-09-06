@@ -1,0 +1,24 @@
+[versions]
+androidGradlePlugin = "7.4.2"
+multiplatformPlugin = "1.8.21"
+androidxComposeBom = "2022.10.00"
+androidxComposeMaterial3 = "1.1.1"
+androidxComposeMaterial = "1.5.1"
+androidxActivity = "1.7.1"
+
+[libraries]
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
+androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxComposeMaterial3" }
+material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "androidxComposeMaterial" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+
+[plugins]
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "multiplatformPlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "multiplatformPlugin" }
