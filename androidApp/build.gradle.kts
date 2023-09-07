@@ -4,20 +4,20 @@ plugins {
 }
 
 android {
-    namespace = "com.android.parkingpartnerapp.android"
-    compileSdk = 33
+    namespace = rootProject.ext["nameSpace"] as String
+    compileSdk = rootProject.ext["compileSdkVersion"] as Int
     defaultConfig {
-        applicationId = "com.android.parkingpartnerapp.android"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = rootProject.ext["nameSpace"] as String
+        minSdk = rootProject.ext["minSdkVersion"] as Int
+        targetSdk = rootProject.ext["targetSdkVersion"] as Int
+        versionCode = rootProject.ext["versionCode"] as Int
+        versionName = rootProject.ext["versionName"] as String
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
+        kotlinCompilerExtensionVersion = rootProject.ext["kotlinCompilerExtensionVersion"] as String
     }
 
     buildTypes {
@@ -30,7 +30,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = rootProject.ext["jvmTarget"] as String
     }
 }
 

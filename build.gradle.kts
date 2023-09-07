@@ -6,6 +6,17 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
 }
 
+ext {
+    set("versionCode", 1)
+    set("versionName", "1.0")
+    set("compileSdkVersion", 34)
+    set("minSdkVersion", 24)
+    set("targetSdkVersion", 33)
+    set("nameSpace", "com.android.parkingpartnerapp.android")
+    set("kotlinCompilerExtensionVersion", "1.4.7")
+    set("jvmTarget", "1.8")
+}
+
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
