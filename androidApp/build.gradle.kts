@@ -1,23 +1,23 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.android.application)
 }
 
 android {
-    namespace = "com.android.parkingpartnerapp.android"
-    compileSdk = 33
+    namespace = rootProject.ext["nameSpace"] as String
+    compileSdk = rootProject.ext["compileSdkVersion"] as Int
     defaultConfig {
-        applicationId = "com.android.parkingpartnerapp.android"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = rootProject.ext["nameSpace"] as String
+        minSdk = rootProject.ext["minSdkVersion"] as Int
+        targetSdk = rootProject.ext["targetSdkVersion"] as Int
+        versionCode = rootProject.ext["versionCode"] as Int
+        versionName = rootProject.ext["versionName"] as String
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
+        kotlinCompilerExtensionVersion = rootProject.ext["kotlinCompilerExtensionVersion"] as String
     }
 
     buildTypes {
@@ -30,21 +30,19 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = rootProject.ext["jvmTarget"] as String
     }
 }
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.foundation:foundation:")
-    implementation("androidx.compose.foundation:foundation:")
-    implementation("androidx.activity:activity-compose:1.7.1")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material3:material3-window-size-class")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation (platform("androidx.compose:compose-bom:2022.10.00"))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+    implementation(libs.material.icons.extended)
+    implementation (platform(libs.androidx.compose.bom))
 }
