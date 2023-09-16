@@ -1,9 +1,20 @@
 plugins {
     //trick: for the same plugin versions in all sub-modules
-    id("com.android.application").version("7.4.2").apply(false)
-    id("com.android.library").version("7.4.2").apply(false)
-    kotlin("android").version("1.8.21").apply(false)
-    kotlin("multiplatform").version("1.8.21").apply(false)
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.multiplatform) apply false
+    alias(libs.plugins.kotlin.android) apply false
+}
+
+ext {
+    set("versionCode", 1)
+    set("versionName", "1.0")
+    set("compileSdkVersion", 34)
+    set("minSdkVersion", 24)
+    set("targetSdkVersion", 33)
+    set("nameSpace", "com.android.parkingpartnerapp.android")
+    set("kotlinCompilerExtensionVersion", "1.4.7")
+    set("jvmTarget", "1.8")
 }
 
 tasks.register("clean", Delete::class) {

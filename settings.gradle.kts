@@ -11,6 +11,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    versionCatalogs {
+        create("libs") {
+            from(files("./gradle/libs.version.toml"))
+        }
+    }
 }
 
 rootProject.name = "ParkingPartnerApp"
