@@ -5,6 +5,7 @@ androidxComposeBom = "2022.10.00"
 androidxComposeMaterial3 = "1.1.1"
 androidxComposeMaterial = "1.5.1"
 androidxActivity = "1.7.1"
+kotlinSerialization = "1.8.21"
 
 [libraries]
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
@@ -22,3 +23,4 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "multiplatformPlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "multiplatformPlugin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
