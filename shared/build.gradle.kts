@@ -26,9 +26,9 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
+        val androidMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
+                implementation(libs.kotlinx.coroutines.android)
             }
         }
         val commonTest by getting {
@@ -45,4 +45,7 @@ android {
     defaultConfig {
         minSdk = 24
     }
+}
+dependencies {
+    implementation(project(mapOf("path" to ":shared")))
 }
