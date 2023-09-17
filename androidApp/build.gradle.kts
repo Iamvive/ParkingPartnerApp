@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.application)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -36,6 +38,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(project(":shared:networklibrary"))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -45,4 +48,8 @@ dependencies {
     implementation(libs.androidx.compose.material3.windowSizeClass)
     implementation(libs.material.icons.extended)
     implementation (platform(libs.androidx.compose.bom))
+    implementation(libs.hilt.android)
+    annotationProcessor(libs.hilt.ext.compiler)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
 }

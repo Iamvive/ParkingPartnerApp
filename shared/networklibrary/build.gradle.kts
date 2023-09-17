@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlinx-serialization")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,6 +53,9 @@ dependencies {
 
     debugImplementation("com.github.chuckerteam.chucker:library:$chuckerVersion")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:$chuckerVersion")
+
+    implementation(libs.hilt.android)
+    annotationProcessor(libs.hilt.ext.compiler)
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
