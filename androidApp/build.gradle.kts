@@ -49,7 +49,7 @@ dependencies {
     implementation(libs.material.icons.extended)
     implementation (platform(libs.androidx.compose.bom))
     implementation(libs.hilt.android)
-    annotationProcessor(libs.hilt.ext.compiler)
+    kapt(libs.hilt.ext.compiler)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.runtimeCompose)
 }

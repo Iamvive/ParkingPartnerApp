@@ -4,18 +4,21 @@ import android.content.Context
 import com.android.parkingpartnerapp.android.ParkingPartnerApp
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-abstract class AppModule(
-    private val app: ParkingPartnerApp,
-) {
+@InstallIn(SingletonComponent::class)
+abstract class AppModule {
 
-    @Singleton
-    @Provides
-    fun provideApplication(app: ParkingPartnerApp) : ParkingPartnerApp = app
+    companion object {
+        @Singleton
+        @Provides
+        internal fun provideApplication(app: ParkingPartnerApp): ParkingPartnerApp = app
 
-    @Singleton
-    @Provides
-    fun provideAppContext(app:ParkingPartnerApp): Context = app.applicationContext
+        @Singleton
+        @Provides
+        internal fun provideAppContext(app: ParkingPartnerApp): Context = app.applicationContext
+    }
 }

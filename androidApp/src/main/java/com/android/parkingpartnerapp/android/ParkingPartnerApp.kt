@@ -1,7 +1,7 @@
 package com.android.parkingpartnerapp.android
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class ParkingPartnerApp : Application() {
-
-}
+@HiltAndroidApp
+class ParkingPartnerApp : Application()

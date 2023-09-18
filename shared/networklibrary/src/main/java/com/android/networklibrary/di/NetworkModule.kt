@@ -4,19 +4,26 @@ import android.content.Context
 import com.android.networklibrary.ktor.KtorClient
 import com.android.networklibrary.urlprovider.UrlProvider
 import com.android.networklibrary.urlprovider.UrlProviderImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
 
 @Module
-class NetworkModule(
-    private val context: Context,
-) {
+@InstallIn(SingletonComponent::class)
+abstract class NetworkModule {
 
-    @Provides
-    fun provideBaseUrl(): UrlProvider = UrlProviderImpl()
+    @Binds
+    internal abstract fun bindUrlProvider(imp: UrlProviderImpl): UrlProvider
 
-    @Provides
-    fun provideClient(urlProvider: UrlProvider): HttpClient =
-        KtorClient(context, urlProvider).client
+    companion object {
+        @Provides
+        fun provideClient(
+            context: Context,
+            urlProvider: UrlProvider,
+        ): HttpClient = KtorClient(context, urlProvider).client
+    }
+
 }

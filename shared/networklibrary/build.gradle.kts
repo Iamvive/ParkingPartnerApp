@@ -55,7 +55,7 @@ dependencies {
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:$chuckerVersion")
 
     implementation(libs.hilt.android)
-    annotationProcessor(libs.hilt.ext.compiler)
+    kapt(libs.hilt.ext.compiler)
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
