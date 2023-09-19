@@ -51,5 +51,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.ext.compiler)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.runtimeCompose)
 }
