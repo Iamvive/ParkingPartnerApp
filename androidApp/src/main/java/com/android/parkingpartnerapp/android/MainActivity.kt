@@ -13,14 +13,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
 import com.android.parkingpartnerapp.Greeting
-import dagger.hilt.android.AndroidEntryPoint
+import com.android.parkingpartnerapp.root.loggedin.login.repo.LoginRepo
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject lateinit var loginRepo: LoginRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as ParkingPartnerApp).appComponent.inject(this)
         setContent {
             MyApplicationTheme {
                 Surface(
@@ -31,7 +36,16 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            loginRepo.refresh("9078606487", "abcd")
+            println("LoginData will be : ${loginRepo.lastValue}")
+        }
+    }
 }
+
 
 @Composable
 fun GreetingView(text: String) {

@@ -1,24 +1,24 @@
 package com.android.parkingpartnerapp.android.di
 
 import android.content.Context
+import com.android.parkingpartnerapp.android.LoginRepoImpl
 import com.android.parkingpartnerapp.android.ParkingPartnerApp
+import com.android.parkingpartnerapp.root.loggedin.login.repo.LoginRepo
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-abstract class AppModule {
+ class AppModule(
+    private val app: ParkingPartnerApp
+) {
 
-    companion object {
-        @Singleton
-        @Provides
-        internal fun provideApplication(app: ParkingPartnerApp): ParkingPartnerApp = app
+    @Provides
+    internal fun bindsLoginRepo(imp: LoginRepoImpl): LoginRepo = imp
 
-        @Singleton
-        @Provides
-        internal fun provideAppContext(app: ParkingPartnerApp): Context = app.applicationContext
-    }
+    @Provides
+    internal fun provideApplication(): ParkingPartnerApp = app
+
+    @Provides
+    internal fun provideAppContext(): Context = app.applicationContext
+
 }
