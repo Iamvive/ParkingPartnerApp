@@ -38,6 +38,8 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(project(":shared:networklibrary"))
+    implementation(project(":commons"))
+    implementation(project(":commons:privacy"))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)

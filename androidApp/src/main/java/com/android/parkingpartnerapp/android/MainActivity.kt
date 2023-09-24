@@ -1,8 +1,10 @@
 package com.android.parkingpartnerapp.android
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -16,16 +18,53 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.android.parkingpartnerapp.Greeting
 import com.android.parkingpartnerapp.root.loggedin.login.repo.LoginRepo
+import com.appwork.commons.di.CommonsModule
+import com.appwork.commons.di.DaggerCommonsComponent
+import com.appwork.privacy.permissions.Permissions
+import com.appwork.privacy.permissions.checker.PermissionChecker
+import com.appwork.privacy.permissions.rationale.PermissionRationaleChecker
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
-    @Inject lateinit var loginRepo: LoginRepo
+    @Inject
+    lateinit var loginRepo: LoginRepo
+
+    @Inject
+    lateinit var permissionChecker: PermissionChecker
+
+    @Inject
+    lateinit var permissionRationale: PermissionRationaleChecker
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Log.i("Permission: ", "Granted")
+            } else {
+                Log.i("Permission: ", "Denied")
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as ParkingPartnerApp).appComponent.inject(this)
+
+        (application as ParkingPartnerApp)
+            .appComponent
+            .inject(this)
+
+        DaggerCommonsComponent.builder()
+            .commonsModule(
+                CommonsModule(
+                    this.applicationContext,
+                    this
+                )
+            )
+            .build()
+            .injectActivity(this)
+
         setContent {
             MyApplicationTheme {
                 Surface(
@@ -37,12 +76,31 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private suspend fun onClickRequestPermission() {
+        when {
+            permissionGranted() -> println("Permission Granted")
+            shouldShowRationale() -> launchRequest() //TODO Show an educative screen then on tap of this show launchRequest
+            else -> launchRequest()
+        }
+    }
+
+    private fun launchRequest() {
+        requestPermissionLauncher.launch(Permissions.CAMERA.value)
+    }
+
+    private fun shouldShowRationale() = permissionRationale.shouldShowPermissionRationale(Permissions.CAMERA)
+
+    private suspend fun permissionGranted() =
+        permissionChecker.isGranted(Permissions.CAMERA)
+
     override fun onResume() {
         super.onResume()
         lifecycleScope.launch {
             loginRepo.refresh("9078606487", "abcd")
             println("LoginData will be : ${loginRepo.lastValue}")
         }
+
+        lifecycleScope.launch {  onClickRequestPermission() }
     }
 }
 

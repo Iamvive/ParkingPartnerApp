@@ -2,6 +2,7 @@ package com.android.parkingpartnerapp.android.di
 
 import com.android.networklibrary.di.NetworkComponent
 import com.android.parkingpartnerapp.android.MainActivity
+import com.appwork.commons.di.CommonsComponent
 import dagger.Component
 
 @Component(

@@ -24,3 +24,5 @@ include(":shared")
 //Below code is responsible for including the KMM lib to ParkingPartnerApp
 //includeBuild("../KMM-Lib")
 include(":shared:networklibrary")
+include(":commons")
+include(":commons:privacy")

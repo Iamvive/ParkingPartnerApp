@@ -9,7 +9,7 @@ import dagger.Provides
 
 @Module
  class AppModule(
-    private val app: ParkingPartnerApp
+    private val app: ParkingPartnerApp,
 ) {
 
     @Provides
@@ -20,5 +20,4 @@ import dagger.Provides
 
     @Provides
     internal fun provideAppContext(): Context = app.applicationContext
-
 }
