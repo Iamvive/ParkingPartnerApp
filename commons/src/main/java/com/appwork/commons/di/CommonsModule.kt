@@ -10,20 +10,15 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class CommonsModule(
-    private val context: Context,
-    private val activity: ComponentActivity,
-) {
-    @Provides
-    fun provideActivity() : ComponentActivity = activity
+class CommonsModule {
 
     @Provides
-    fun providePermissionChecker(): PermissionChecker =
-        AndroidPermissionChecker(context)
+    fun providePermissionChecker(
+        context: Context,
+    ): PermissionChecker = AndroidPermissionChecker(context)
 
     @Provides
     fun provideRationaleChecker(
         activity: ComponentActivity,
-    ): PermissionRationaleChecker =
-        AndroidPermissionRationaleChecker(activity)
+    ): PermissionRationaleChecker = AndroidPermissionRationaleChecker(activity)
 }

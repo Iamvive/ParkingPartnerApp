@@ -1,18 +1,23 @@
 package com.appwork.commons.di
 
+import android.content.Context
 import androidx.activity.ComponentActivity
 import com.appwork.privacy.permissions.checker.PermissionChecker
 import com.appwork.privacy.permissions.rationale.PermissionRationaleChecker
+import dagger.BindsInstance
 import dagger.Component
 
 @Component(modules = [CommonsModule::class])
 interface CommonsComponent {
-    @Component.Builder
-    interface Builder {
-        fun commonsModule(module: CommonsModule): Builder
-        fun build(): CommonsComponent
+
+    @Component.Factory
+    interface Factory {
+        fun create(
+            @BindsInstance activity: ComponentActivity,
+            @BindsInstance context: Context,
+        ): CommonsComponent
     }
 
-    fun providePermissionChecker(): PermissionChecker
-    fun injectActivity(activity: ComponentActivity)
+    val permissionChecker: PermissionChecker
+    val rationaleChecker: PermissionRationaleChecker
 }

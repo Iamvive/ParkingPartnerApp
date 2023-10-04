@@ -18,11 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.android.parkingpartnerapp.Greeting
 import com.android.parkingpartnerapp.root.loggedin.login.repo.LoginRepo
-import com.appwork.commons.di.CommonsModule
-import com.appwork.commons.di.DaggerCommonsComponent
 import com.appwork.privacy.permissions.Permissions
-import com.appwork.privacy.permissions.checker.PermissionChecker
-import com.appwork.privacy.permissions.rationale.PermissionRationaleChecker
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,12 +26,6 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var loginRepo: LoginRepo
-
-    @Inject
-    lateinit var permissionChecker: PermissionChecker
-
-    @Inject
-    lateinit var permissionRationale: PermissionRationaleChecker
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -51,20 +41,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (application as ParkingPartnerApp)
-            .appComponent
+        (application as ParkingPartnerApp).appComponent
             .inject(this)
-
-        DaggerCommonsComponent.builder()
-            .commonsModule(
-                CommonsModule(
-                    this.applicationContext,
-                    this
-                )
-            )
-            .build()
-            .injectActivity(this)
-
         setContent {
             MyApplicationTheme {
                 Surface(
@@ -77,21 +55,22 @@ class MainActivity : ComponentActivity() {
     }
 
     private suspend fun onClickRequestPermission() {
-        when {
-            permissionGranted() -> println("Permission Granted")
-            shouldShowRationale() -> launchRequest() //TODO Show an educative screen then on tap of this show launchRequest
-            else -> launchRequest()
-        }
+//        when {
+//            permissionGranted() -> println("Permission Granted")
+//            shouldShowRationale() -> launchRequest() //TODO Show an educative screen then on tap of this show launchRequest
+//            else -> launchRequest()
+//        }
     }
 
     private fun launchRequest() {
         requestPermissionLauncher.launch(Permissions.CAMERA.value)
     }
 
-    private fun shouldShowRationale() = permissionRationale.shouldShowPermissionRationale(Permissions.CAMERA)
-
-    private suspend fun permissionGranted() =
-        permissionChecker.isGranted(Permissions.CAMERA)
+//    private fun shouldShowRationale() =
+//        permissionRationale.shouldShowPermissionRationale(Permissions.CAMERA)
+//
+//    private suspend fun permissionGranted() =
+//        permissionChecker.isGranted(Permissions.CAMERA)
 
     override fun onResume() {
         super.onResume()
@@ -100,10 +79,9 @@ class MainActivity : ComponentActivity() {
             println("LoginData will be : ${loginRepo.lastValue}")
         }
 
-        lifecycleScope.launch {  onClickRequestPermission() }
+        lifecycleScope.launch { onClickRequestPermission() }
     }
 }
-
 
 @Composable
 fun GreetingView(text: String) {

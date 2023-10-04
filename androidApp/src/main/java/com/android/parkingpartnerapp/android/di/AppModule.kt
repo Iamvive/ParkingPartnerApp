@@ -8,16 +8,18 @@ import dagger.Module
 import dagger.Provides
 
 @Module
- class AppModule(
-    private val app: ParkingPartnerApp,
-) {
+class AppModule {
 
     @Provides
     internal fun bindsLoginRepo(imp: LoginRepoImpl): LoginRepo = imp
 
     @Provides
-    internal fun provideApplication(): ParkingPartnerApp = app
+    internal fun provideApplication(
+       application: ParkingPartnerApp,
+    ): ParkingPartnerApp = application
 
     @Provides
-    internal fun provideAppContext(): Context = app.applicationContext
+    internal fun provideAppContext(
+       application: ParkingPartnerApp,
+    ): Context = application.applicationContext
 }
