@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<dimen name="global_14_dp">14.dp</dimen>
+    <dimen name="global_4_dp">4.dp</dimen>
+    <dimen name="global_6_dp">6.dp</dimen>
+    <dimen name="global_8_dp">8.dp</dimen>
+    <dimen name="global_10_dp">10.dp</dimen>
+    <dimen name="global_12_dp">12.dp</dimen>
+    <dimen name="global_14_dp">14.dp</dimen>
+    <dimen name="global_16_dp">16.dp</dimen>
+    <dimen name="global_20_dp">20.dp</dimen>
+    <dimen name="global_24_dp">24.dp</dimen>
+    <dimen name="global_40_dp">40.dp</dimen>
+    <dimen name="global_48_dp">48.dp</dimen>
+    <dimen name="global_60_dp">60.dp</dimen>
 </resources>

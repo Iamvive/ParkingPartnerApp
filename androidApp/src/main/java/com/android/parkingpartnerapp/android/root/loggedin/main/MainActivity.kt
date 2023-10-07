@@ -13,10 +13,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
-import com.android.parkingpartnerapp.android.MyApplicationTheme
+import com.android.parkingpartnerapp.android.ParkingPartnerAppTheme
 import com.android.parkingpartnerapp.android.ParkingPartnerApp
 import com.android.parkingpartnerapp.android.R.dimen
 import com.android.parkingpartnerapp.android.R.string
+import com.android.parkingpartnerapp.android.root.loggedin.main.vehicleentry.VehicleEntryView
 import com.android.parkingpartnerapp.root.loggedin.login.repo.LoginRepo
 import com.appwork.privacy.permissions.Permissions
 import com.appwork.privacy.permissions.checker.PermissionChecker
@@ -50,7 +51,9 @@ class MainActivity : ComponentActivity() {
         appComp.activityComponentFactory().create(this).inject(this)
         lifecycleScope.launch { onClickRequestPermission() }
         setContent {
-            MyApplicationTheme {}
+            ParkingPartnerAppTheme {
+                VehicleEntryView()
+            }
         }
     }
 
@@ -95,7 +98,7 @@ fun GreetingView(text: String) {
 @Preview
 @Composable
 fun DefaultPreview() {
-    MyApplicationTheme {
+    ParkingPartnerAppTheme {
         GreetingView(stringResource(string.hello_android))
     }
 }
