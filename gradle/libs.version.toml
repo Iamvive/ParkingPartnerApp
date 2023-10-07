@@ -5,6 +5,10 @@ androidxComposeBom = "2022.10.00"
 androidxComposeMaterial3 = "1.1.1"
 androidxComposeMaterial = "1.5.1"
 androidxActivity = "1.7.1"
+kotlinSerialization = "1.8.21"
+dagger = "2.44"
+androidxLifecycle = "2.6.0-alpha05"
+kotlinxCoroutines = "1.6.4"
 
 [libraries]
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
@@ -16,9 +20,17 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxComposeMaterial3" }
 material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "androidxComposeMaterial" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+hilt-android = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+hilt-ext-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version = "1.6.1" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "multiplatformPlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "multiplatformPlugin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
