@@ -12,7 +12,7 @@ fun <T: HttpClientEngineConfig> HttpClientConfig<T>.initDefaultConfigs(
 {
     defaultRequest {
         url {
-          protocol = URLProtocol.HTTPS
+          protocol = URLProtocol.HTTP
           host = urlProvider()
         }
     }
