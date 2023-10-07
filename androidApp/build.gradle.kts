@@ -38,6 +38,8 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(project(":shared:networklibrary"))
+    implementation(project(":commons"))
+    implementation(project(":commons:privacy"))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -48,6 +50,7 @@ dependencies {
     implementation(libs.material.icons.extended)
     implementation (platform(libs.androidx.compose.bom))
     implementation(libs.hilt.android)
+    implementation(libs.androidx.fragment.ktx)
     kapt(libs.hilt.ext.compiler)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.kotlinx.coroutines.android)
