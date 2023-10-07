@@ -1,13 +1,18 @@
 package com.android.networklibrary.urlprovider
 
+import com.android.networklibrary.BuildConfig
+import javax.inject.Inject
 
-class UrlProviderImpl : UrlProvider {
+internal class UrlProviderImpl
+@Inject
+constructor() : UrlProvider {
     private companion object {
-        const val BASE_URL_DEBUG = "jsonplaceholder.typicode.com"
-        const val BASE_URL_PROD = "jsonplaceholder.typicode.com" //TODO replace these
+        const val BASE_URL_DEBUG = "88.150.180.27:8090"
+        const val BASE_URL_PROD = "88.150.180.27:8090" //TODO replace these
     }
 
-    override fun invoke(): String =
-        if (true) BASE_URL_DEBUG //TODO replace this with correct info
+    override fun invoke(): String {
+        return if (BuildConfig.DEBUG) BASE_URL_DEBUG //TODO replace this with correct info
         else BASE_URL_PROD
+    }
 }
