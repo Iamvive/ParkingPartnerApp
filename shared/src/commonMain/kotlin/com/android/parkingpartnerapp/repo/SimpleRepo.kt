@@ -6,11 +6,11 @@ import com.android.parkingpartnerapp.repo.Status.LOADING
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class SimpleRepo<DomainModel> : Repo<DomainModel> {
+open class SimpleRepo<DomainModel> : Repo<DomainModel> {
     private val statusFlow = MutableStateFlow(LOADING)
     private val valuesFlow: MutableStateFlow<DomainModel?> = MutableStateFlow(null)
 
-    suspend fun update(apiJob: () -> DomainModel) {
+    suspend fun update(apiJob: suspend () -> DomainModel) {
         try {
             statusFlow.value = LOADING
             val model = apiJob.invoke()
@@ -23,7 +23,7 @@ class SimpleRepo<DomainModel> : Repo<DomainModel> {
     }
 
     suspend fun <ResponseModel> updateWithValue(
-        apiJob: () -> ResponseModel,
+        apiJob: suspend () -> ResponseModel,
         mapper: (ResponseModel) -> DomainModel,
     ): DomainModel? {
         return try {

@@ -7,8 +7,8 @@ internal class UrlProviderImpl
 @Inject
 constructor() : UrlProvider {
     private companion object {
-        const val BASE_URL_DEBUG = "http://88.150.180.27:8090"
-        const val BASE_URL_PROD = "http://88.150.180.27:8090" //TODO replace these
+        const val BASE_URL_DEBUG = "88.150.180.27:8090"
+        const val BASE_URL_PROD = "88.150.180.27:8090" //TODO replace these
     }
 
     override fun invoke(): String {
