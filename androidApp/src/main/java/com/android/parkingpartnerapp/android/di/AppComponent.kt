@@ -1,7 +1,8 @@
 package com.android.parkingpartnerapp.android.di
 
 import com.android.networklibrary.di.NetworkComponent
-import com.android.parkingpartnerapp.android.MainActivity
+import com.android.parkingpartnerapp.android.root.loggedin.main.MainActivity
+import com.android.parkingpartnerapp.android.root.loggedin.main.di.ActivityComponent
 import dagger.Component
 import javax.inject.Singleton
 
@@ -19,5 +20,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun inject(activity: MainActivity)
+    fun activityComponentFactory(): ActivityComponent.Factory
 }

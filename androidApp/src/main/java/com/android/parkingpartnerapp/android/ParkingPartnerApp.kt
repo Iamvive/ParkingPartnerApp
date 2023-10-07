@@ -19,7 +19,7 @@ class ParkingPartnerApp : Application() {
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder()
             .networkComponent(networkComponent)
-            .appModule(AppModule())
+            .appModule(AppModule(this))
             .build()
     }
 }
