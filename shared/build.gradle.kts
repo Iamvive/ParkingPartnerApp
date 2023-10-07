@@ -26,6 +26,12 @@ kotlin {
     }
 
     sourceSets {
+        val commonMain by getting {
+            dependencies {
+                //put your multiplatform dependencies here
+                implementation(libs.kotlinx.coroutines.core)
+            }
+        }
         val androidMain by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.android)
@@ -47,5 +53,5 @@ android {
     }
 }
 dependencies {
-    implementation(project(mapOf("path" to ":shared")))
+    implementation(project(mapOf("path" to ":shared:networklibrary")))
 }
