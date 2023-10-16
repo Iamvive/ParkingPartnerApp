@@ -5,8 +5,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_vehicle_number">Enter Vehicle Number</string>
+    <string name="parking_vehicle_info">Parking or Vehicle Info</string>
     <string name="vehicle_img_desc">Vehicle Number Icon</string>
     <string name="save">Save</string>
     <string name="vehicle_number_format">AB 12 CD 3456</string>
-    <string name="country_abbribriation">IND</string>
+    <string name="country_iso_code">IND</string>
 </resources>
