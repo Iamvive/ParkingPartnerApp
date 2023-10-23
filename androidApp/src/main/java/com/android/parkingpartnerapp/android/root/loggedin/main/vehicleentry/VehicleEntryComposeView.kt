@@ -1,9 +1,7 @@
 package com.android.parkingpartnerapp.android.root.loggedin.main.vehicleentry
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.Orientation.Vertical
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,7 +13,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -23,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,6 +40,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.android.parkingpartnerapp.android.R.drawable
 import com.android.parkingpartnerapp.android.R.string
 
@@ -45,6 +56,7 @@ fun VehicleEntryComposeView(
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = Color.Transparent)
             .padding(horizontal = 16.dp)
     ) {
         val vehicleNumber: String =
@@ -190,4 +202,44 @@ fun RenderVerticalSpacer(
         modifier = modifier
             .height(dimension)
     )
+}
+
+@Composable
+fun NavHostDemo(items: List<String>) {
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = {
+            BottomNavigation {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentDestination = navBackStackEntry?.destination
+                items.forEach { screen ->
+                    BottomNavigationItem(
+                        icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
+                        label = { Text(stringResource(screen.resourceId)) },
+                        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                        onClick = {
+                            navController.navigate(screen.route) {
+                                // Pop up to the start destination of the graph to
+                                // avoid building up a large stack of destinations
+                                // on the back stack as users select items
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                // Avoid multiple copies of the same destination when
+                                // reselecting the same item
+                                launchSingleTop = true
+                                // Restore state when reselecting a previously selected item
+                                restoreState = true
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    ) { innerPadding ->
+        NavHost(navController, startDestination = "Screen.Profile.route", Modifier.padding(innerPadding)) {
+            composable("Screen.Profile.route") { Profile(navController) }
+            composable("Screen.FriendsList.route") { FriendsList(navController) }
+        }
+    }
 }

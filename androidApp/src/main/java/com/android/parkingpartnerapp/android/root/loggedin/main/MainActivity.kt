@@ -3,6 +3,7 @@ package com.android.parkingpartnerapp.android.root.loggedin.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.android.parkingpartnerapp.android.ParkingPartnerApp
@@ -22,7 +23,9 @@ class MainActivity : ComponentActivity() {
 
         appComp.activityComponentFactory().create(this).inject(this)
         setContent {
-            VehicleEntryComposeView(vehicleEntryViewModel)
+            ParkingPartnerAppTheme {
+                VehicleEntryComposeView(vehicleEntryViewModel)
+            }
         }
     }
 }
